@@ -1,0 +1,84 @@
+.button-ripple {
+  overflow: hidden;
+
+  width: 100px;
+  height: 50px;
+
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+
+  -webkit-appearance: button;
+  transform: translate3d(0, 0, 0);
+
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 50px;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  /* Button background color and text color */
+  color: #ffffff;
+  background-color: #ff4081;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.button-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+.button-circle .touch-ripple {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.touch-ripple .button-circle .button-circle-inner{
+  height: 100%;
+  width: 100%;
+  border-radius: 50% !important;
+  height: 88px;
+}
+
+@keyframes scaleEase {
+    from {
+      opacity: 1;
+
+      -webkit-transform: scale(0);
+      transform: scale(0);
+
+      /* ripple background color */
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    to {
+      opacity: 1;
+
+      transform: scale(1);
+      -webkit-transform: scale(1);
+
+      /* ripple background color */
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.touch-ripple .button-circle.ripple-started {
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.touch-ripple .button-circle.ripple-started .button-circle-inner {
+  animation-name: scaleEase;
+  animation-duration: 650ms;
+}
